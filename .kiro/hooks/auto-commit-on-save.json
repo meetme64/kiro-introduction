@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Auto-commit on file save",
+      "trigger": "PostFileSave",
+      "description": "Stages and commits the saved file locally with a descriptive commit message. Never pushes to remote. Excludes README.md and docs/*.md, which are handled by the docs-commit-on-save hook.",
+      "matcher": "^(?!.*(^|/)README\\.md$)(?!.*(^|/)docs/.*\\.md$).*$",
+      "action": {
+        "type": "agent",
+        "prompt": "A file was just saved. Stage only that file (git add <path>) and commit it with a concise, descriptive commit message summarizing the actual change (inspect the diff, e.g. via `git diff --cached`, to write the message — don't use a generic message like 'update file'). Use conventional, present-tense commit style (e.g. 'Add X', 'Fix Y', 'Refactor Z'). Do this commit locally without asking for confirmation. Do NOT run `git push` or any command that contacts a remote — pushing requires explicit user approval first. If the file is untracked by git (e.g. ignored, or outside any repo), or if there are no actual changes to commit, skip silently without reporting it as an error."
+      }
+    }
+  ]
+}
