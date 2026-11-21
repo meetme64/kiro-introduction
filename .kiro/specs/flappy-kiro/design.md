@@ -1277,3 +1277,367 @@ The Flappy Kiro testing strategy employs a dual approach combining unit tests fo
 **Test Tagging Format:** Tests are tagged with feature and property references using the format `Feature: flappy-kiro, Property N: [property description]`. This tagging facilitates tracing test coverage back to design requirements and enables targeted test execution for specific features.
 
 **Performance Testing:** Performance tests measure frame timing, rendering duration, and physics calculation time. Tests verify that individual frame operations complete within the 16ms budget required for 60 FPS. Memory usage is tracked and tested against the 50MB constraint. Performance tests run as part of the regular test suite but do not block merge on minor regressions.
+--------------------------------------------------------------------------------
+
+## Appendix E: Cape Rendering System
+
+### Cape Configuration
+
+The cape rendering system adds visual flair to Ghosty with a red cape that animates based on movement direction.
+
+```javascript
+const CAPE_CONFIG = {
+    width: 14,              // Cape width in pixels
+    minHeight: 20,          // Minimum cape length
+    maxHeight: 28,          // Maximum cape length
+    color: '#DC143C',       // Crimson red primary color
+    secondaryColor: '#8B0000',  // Dark red for depth shading
+    flowSpeed: 0.15,        // Animation speed for cape movement
+    maxFlowOffset: 8,       // Maximum pixels of flow animation
+    anchorOffset: -5        // Offset from Ghosty center for cape attachment
+};
+```
+
+### Cape Rendering Algorithm
+
+The cape uses a trapezoid shape with bezier curves for a natural draping effect:
+
+```javascript
+function renderCape(ctx, cape, ghostyX, ghostyY, ghostyRotation) {
+    const anchorX = ghostyX + (CONFIG.hitbox.width / 2);
+    const anchorY = ghostyY + (CONFIG.hitbox.height / 2) + CAPE_CONFIG.anchorOffset;
+    
+    // Calculate flow effect based on velocity
+    const flowEffect = (cape.flowOffset > 0) ? -3 : (cape.flowOffset < 0) ? 3 : 0;
+    const capeRotation = ghostyRotation + flowEffect;
+    const radians = capeRotation * (Math.PI / 180);
+    
+    const capeHeight = CAPE_CONFIG.minHeight + Math.abs(cape.flowOffset);
+    const endX = anchorX - Math.sin(radians) * capeHeight;
+    const endY = anchorY + Math.cos(radians) * capeHeight;
+    
+    ctx.save();
+    ctx.translate(anchorX, anchorY);
+    ctx.rotate(radians);
+    
+    // Draw trapezoid cape
+    ctx.beginPath();
+    ctx.moveTo(-CAPE_CONFIG.width / 2, 0);
+    ctx.lineTo(CAPE_CONFIG.width / 2, 0);
+    ctx.lineTo(CAPE_CONFIG.width / 3, -capeHeight);
+    ctx.lineTo(-CAPE_CONFIG.width / 3, -capeHeight);
+    ctx.closePath();
+    
+    ctx.fillStyle = CAPE_CONFIG.color;
+    ctx.fill();
+    
+    // Add depth shading
+    ctx.fillStyle = CAPE_CONFIG.secondaryColor;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(CAPE_CONFIG.width / 2, 0);
+    ctx.lineTo(CAPE_CONFIG.width / 4, -capeHeight);
+    ctx.closePath();
+    ctx.fill();
+    
+    ctx.restore();
+}
+```
+
+### Cape Animation
+
+The cape flows opposite to Ghosty's vertical movement:
+
+```javascript
+function updateCapeAnimation(cape, ghostyVelocity) {
+    if (ghostyVelocity > 0) {
+        // Falling - cape flies upward
+        cape.flowOffset = Math.min(CAPE_CONFIG.maxFlowOffset, 
+                                   cape.flowOffset + CAPE_CONFIG.flowSpeed);
+    } else if (ghostyVelocity < 0) {
+        // Rising - cape hangs downward
+        cape.flowOffset = Math.max(-CAPE_CONFIG.maxFlowOffset, 
+                                   cape.flowOffset - CAPE_CONFIG.flowSpeed);
+    } else {
+        // Hovering - return to neutral
+        cape.flowOffset *= 0.9;
+    }
+    return cape;
+}
+```
+
+--------------------------------------------------------------------------------
+
+## Appendix F: Laser Weapon System
+
+### Laser Configuration
+
+The laser system allows Ghosty to fire a beam that creates holes in pipes:
+
+```javascript
+const LASER_CONFIG = {
+    cooldownFrames: 1200,   // 20 seconds at 60 FPS
+    beamLength: 150,        // Maximum beam travel distance
+    beamSpeed: 15,          // Beam travel speed (pixels per frame)
+    holeRadius: 20,         // Hole radius (40px diameter)
+    maxHolesPerSection: 3,  // Holes before section destroyed
+    colors: {
+        beam: '#00FF00',           // Green outer beam
+        beamCore: '#FFFFFF',       // White center
+        glow: 'rgba(0, 255, 0, 0.3)'  // Glow effect
+    },
+    soundVolume: {
+        fire: 1.0,
+        hit: 0.8,
+        ready: 0.6
+    }
+};
+```
+
+### Laser System Interface
+
+```javascript
+interface LaserSystem {
+    fire(ghosty: Ghosty, pipes: Pipe[]): boolean;
+    update(ghosty: Ghosty, pipes: Pipe[], damageManager: PipeDamageManager): void;
+    reset(): void;
+    getState(): LaserModel;
+}
+
+interface LaserModel {
+    isReady: boolean;
+    rechargeTimer: number;
+    maxRechargeTime: number;
+    beamX: number;
+    beamLength: number;
+    isFiring: boolean;
+    hitPipes: Set<string>;
+}
+```
+
+### Pipe Damage Manager
+
+Tracks laser damage on pipes and manages hole rendering:
+
+```javascript
+interface PipeDamageManager {
+    registerHit(pipeId: string, section: 'UPPER' | 'LOWER', x: number, y: number): boolean;
+    isSectionDestroyed(pipeId: string, section: 'UPPER' | 'LOWER'): boolean;
+    hasHoleAt(pipeId: string, section: 'UPPER' | 'LOWER', x: number, y: number): boolean;
+    getHoles(pipeId: string, section: 'UPPER' | 'LOWER'): PipeHole[];
+    clear(): void;
+    cleanup(activePipeIds: string[]): void;
+}
+
+interface PipeHole {
+    x: number;
+    y: number;
+    radius: number;
+    createdAt: number;
+}
+```
+
+### Laser Firing Logic
+
+```javascript
+function fireLaser(laser, ghosty, pipes) {
+    if (!laser.isReady || laser.isFiring) {
+        return false;  // Cannot fire
+    }
+    
+    laser.isFiring = true;
+    laser.isReady = false;
+    laser.rechargeTimer = laser.maxRechargeTime;
+    laser.beamX = ghosty.x + CONFIG.hitbox.width;
+    laser.hitPipes.clear();
+    
+    // Play fire sound
+    audioEngine.play('laserFire', LASER_CONFIG.soundVolume.fire);
+    
+    return true;
+}
+```
+
+### Laser Beam Rendering
+
+```javascript
+function renderLaser(ctx, laser, ghosty) {
+    if (!laser.isFiring) return;
+    
+    const startX = ghosty.x + CONFIG.hitbox.width;
+    const startY = ghosty.y + CONFIG.hitbox.height / 2;
+    const endX = laser.beamX;
+    
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    
+    // Outer glow
+    ctx.beginPath();
+    ctx.moveTo(startX, startY - 6);
+    ctx.lineTo(endX, startY - 6);
+    ctx.lineTo(endX, startY + 6);
+    ctx.lineTo(startX, startY + 6);
+    ctx.closePath();
+    ctx.fillStyle = LASER_CONFIG.colors.glow;
+    ctx.fill();
+    
+    // Main beam
+    ctx.beginPath();
+    ctx.moveTo(startX, startY - 2);
+    ctx.lineTo(endX, startY - 2);
+    ctx.lineTo(endX, startY + 2);
+    ctx.lineTo(startX, startY + 2);
+    ctx.closePath();
+    ctx.fillStyle = LASER_CONFIG.colors.beam;
+    ctx.fill();
+    
+    // White core
+    ctx.fillStyle = LASER_CONFIG.colors.beamCore;
+    ctx.fillRect(startX, startY - 1, endX - startX, 2);
+    
+    ctx.restore();
+}
+```
+
+### Pipe Hole Rendering
+
+```javascript
+function renderPipeWithHoles(ctx, pipe, damageManager) {
+    const { pipeColor, pipeOutline, pipeOutlineWidth } = CONFIG.visual;
+    
+    // Render upper section
+    renderPipeSection(ctx, pipe, 'UPPER', pipeColor, pipeOutline, 
+                      pipeOutlineWidth, damageManager);
+    
+    // Render lower section  
+    renderPipeSection(ctx, pipe, 'LOWER', pipeColor, pipeOutline,
+                      pipeOutlineWidth, damageManager);
+}
+
+function renderPipeSection(ctx, pipe, section, pipeColor, pipeOutline, 
+                          outlineWidth, damageManager) {
+    if (damageManager.isSectionDestroyed(pipe.id, section)) {
+        return;  // Don't render destroyed sections
+    }
+    
+    // Calculate section bounds...
+    const holes = damageManager.getHoles(pipe.id, section);
+    
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(sectionX, sectionY, sectionWidth, sectionHeight);
+    ctx.clip();
+    
+    // Fill pipe
+    ctx.fillStyle = pipeColor;
+    ctx.fillRect(sectionX, sectionY, sectionWidth, sectionHeight);
+    
+    // Cut out holes
+    if (holes.length > 0) {
+        ctx.globalCompositeOperation = 'destination-out';
+        for (const hole of holes) {
+            ctx.beginPath();
+            ctx.arc(hole.x, hole.y, hole.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    
+    ctx.restore();
+    
+    // Draw outline
+    ctx.strokeStyle = pipeOutline;
+    ctx.lineWidth = outlineWidth;
+    ctx.strokeRect(sectionX, sectionY, sectionWidth, sectionHeight);
+}
+```
+
+### Laser Timer UI
+
+```javascript
+function renderLaserTimer(ctx, laser, canvasWidth, canvasHeight) {
+    const padding = 15;
+    const x = padding;
+    const y = canvasHeight - padding;
+    
+    ctx.font = '16px "Press Start 2P", monospace';
+    
+    if (laser.isReady) {
+        ctx.fillStyle = '#00FF00';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 3;
+        ctx.strokeText('LASER READY', x, y);
+        ctx.fillText('LASER READY', x, y);
+    } else {
+        const seconds = Math.ceil(laser.rechargeTimer / 60);
+        const tenths = Math.floor((laser.rechargeTimer % 60) / 6);
+        
+        ctx.fillStyle = '#FFFFFF';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 3;
+        
+        const text = `LASER: ${seconds}.${tenthhs}s`;
+        ctx.strokeText(text, x, y);
+        ctx.fillText(text, x, y);
+        
+        // Progress bar
+        const progress = 1 - (laser.rechargeTimer / laser.maxRechargeTime);
+        const barColor = progress > 0.8 ? '#00FF00' : 
+                        progress > 0.5 ? '#FFFF00' : '#FF0000';
+        
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillRect(x, y + 10, 100, 6);
+        
+        ctx.fillStyle = barColor;
+        ctx.fillRect(x, y + 10, 100 * progress, 6);
+    }
+}
+```
+
+### Input Integration
+
+Laser firing is triggered by:
+- **'L' key**: Press to fire laser
+- **Right-click**: Context menu action fires laser
+
+```javascript
+// In InputHandler constructor
+document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+    this._triggerLaser();
+});
+
+_handleKeyDown(event) {
+    if (event.code === 'KeyL') {
+        this._triggerLaser();
+        event.preventDefault();
+    }
+    // ... existing handlers
+}
+```
+
+### Collision Integration
+
+Destroyed pipe sections are non-collidable:
+
+```javascript
+function checkKiroPipeCollision(kiro, pipe, damageManager) {
+    const hitbox = getKiroHitbox(kiro);
+    
+    // Check upper section (skip if destroyed)
+    if (!damageManager.isSectionDestroyed(pipe.id, 'UPPER')) {
+        if (checkCircleRectangleCollision(hitbox, getUpperHitbox(pipe))) {
+            return true;
+        }
+    }
+    
+    // Check lower section (skip if destroyed)
+    if (!damageManager.isSectionDestroyed(pipe.id, 'LOWER')) {
+        if (checkCircleRectangleCollision(hitbox, getLowerHitbox(pipe))) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+```
+

@@ -1,0 +1,722 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Create project directory structure": [
+      {
+        "executionId": "1af9a1ed-f72d-45f4-8e5e-0950c25ce2aa",
+        "chatSessionId": "sess_8bf4010b-cc5a-4b94-b9f7-daa34fa42818",
+        "timestamp": 1795090141609
+      },
+      {
+        "executionId": "1af9a1ed-f72d-45f4-8e5e-0950c25ce2aa",
+        "chatSessionId": "sess_8bf4010b-cc5a-4b94-b9f7-daa34fa42818",
+        "timestamp": 1795090344295
+      }
+    ],
+    "2. Create centralized configuration file (config.js)": [
+      {
+        "executionId": "79bc104b-97bc-4152-b86b-249d1fa4b0cb",
+        "chatSessionId": "sess_a324c5db-7b26-40ca-bd62-7964c017b09e",
+        "timestamp": 1795090369891
+      },
+      {
+        "executionId": "79bc104b-97bc-4152-b86b-249d1fa4b0cb",
+        "chatSessionId": "sess_a324c5db-7b26-40ca-bd62-7964c017b09e",
+        "timestamp": 1795090524492
+      }
+    ],
+    "3. Create HTML entry point (index.html)": [
+      {
+        "executionId": "09ea3fae-24e4-4574-ab8a-b99d802c2771",
+        "chatSessionId": "sess_1707ce84-cce6-487c-ac88-a95646df43d1",
+        "timestamp": 1795090561669
+      },
+      {
+        "executionId": "09ea3fae-24e4-4574-ab8a-b99d802c2771",
+        "chatSessionId": "sess_1707ce84-cce6-487c-ac88-a95646df43d1",
+        "timestamp": 1795090665643
+      }
+    ],
+    "4. Create main game entry point (main.js)": [
+      {
+        "executionId": "17866d8c-9b2a-4661-9416-a85877d6c7d7",
+        "chatSessionId": "sess_5694d889-d2d1-4d9c-8e1c-792e92f176f6",
+        "timestamp": 1795090691075
+      },
+      {
+        "executionId": "17866d8c-9b2a-4661-9416-a85877d6c7d7",
+        "chatSessionId": "sess_5694d889-d2d1-4d9c-8e1c-792e92f176f6",
+        "timestamp": 1795090830763
+      }
+    ],
+    "5. Implement Game State Manager core": [
+      {
+        "executionId": "a91a44bb-9246-4020-aa18-1630836ed7d9",
+        "chatSessionId": "sess_d238403c-552f-4a42-8a10-9c60d5ee4ee1",
+        "timestamp": 1795090860271
+      },
+      {
+        "executionId": "a91a44bb-9246-4020-aa18-1630836ed7d9",
+        "chatSessionId": "sess_d238403c-552f-4a42-8a10-9c60d5ee4ee1",
+        "timestamp": 1795092027616
+      }
+    ],
+    "6. Implement Input Handler": [
+      {
+        "executionId": "5a3df39c-834e-4032-b7cd-3249131216f9",
+        "chatSessionId": "sess_3d2300e8-a21f-49e2-a934-9be551fc7618",
+        "timestamp": 1795092194848
+      },
+      {
+        "executionId": "5a3df39c-834e-4032-b7cd-3249131216f9",
+        "chatSessionId": "sess_3d2300e8-a21f-49e2-a934-9be551fc7618",
+        "timestamp": 1795092382546
+      }
+    ],
+    "7. Implement Game Loop": [
+      {
+        "executionId": "a746aa6d-de10-43a1-94af-77ebeabf4a5f",
+        "chatSessionId": "sess_8a0e192b-adc4-4f97-8ee3-e8e16739eb11",
+        "timestamp": 1795092654592
+      },
+      {
+        "executionId": "6d6df7cd-ff4e-4630-a32d-9ae8f8856a09",
+        "chatSessionId": "sess_8dae409d-66e8-4c30-b552-7e35f427219b",
+        "timestamp": 1795227056027
+      },
+      {
+        "executionId": "6d6df7cd-ff4e-4630-a32d-9ae8f8856a09",
+        "chatSessionId": "sess_8dae409d-66e8-4c30-b552-7e35f427219b",
+        "timestamp": 1795227376857
+      }
+    ],
+    "8. Implement Game State transitions": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227398887
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227528685
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227885821
+      }
+    ],
+    "9. Implement Score Manager core": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227399782
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227426309
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227518313
+      }
+    ],
+    "10. Implement Physics Engine": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227400419
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227895869
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795228188245
+      }
+    ],
+    "12. Implement Hitbox calculation utilities": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227400935
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227896967
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795228189577
+      }
+    ],
+    "13. Implement Collision Detector": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227401278
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795228202560
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795228447704
+      }
+    ],
+    "14. Implement Death Sequence animation": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227401893
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227897858
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795228190364
+      }
+    ],
+    "15. Implement Invincibility system (optional)": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227402167
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795228461866
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795229266639
+      }
+    ],
+    "17. Implement Kiro player character": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227402501
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795229279091
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795229529411
+      }
+    ],
+    "18. Implement Pipe Manager": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227402973
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795229542454
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795229739356
+      }
+    ],
+    "20. Implement Cloud Manager": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227403922
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795229544335
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795229740951
+      }
+    ],
+    "22. Implement Asset Loader": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227404209
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795229752688
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230046091
+      }
+    ],
+    "23. Implement Canvas Renderer": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227404735
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795229754405
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230047797
+      }
+    ],
+    "24. Implement Title Screen rendering": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227405012
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230056740
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230212081
+      }
+    ],
+    "25. Implement Playing state rendering": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227405285
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230224776
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230718443
+      }
+    ],
+    "26. Implement Pause Screen rendering": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227405716
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230058262
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230214086
+      }
+    ],
+    "27. Implement Game Over Screen rendering": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227406454
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230732147
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230920656
+      }
+    ],
+    "28. Implement Cloud Renderer": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227406887
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230226066
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230718991
+      }
+    ],
+    "29. Implement Sprite Batcher optimization": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227407187
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230733911
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230922920
+      }
+    ],
+    "30. Implement Audio Engine": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227407972
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230933917
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795232032535
+      }
+    ],
+    "31. Implement Game Reset/Restart functionality": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227408458
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230935348
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795232035006
+      }
+    ],
+    "32. Implement Object Pooling": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227409075
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795230936878
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795232036162
+      }
+    ],
+    "33. Implement Performance Monitor": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227409324
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795232051262
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795232885614
+      }
+    ],
+    "34. Implement Quality Scaling": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227409596
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795232052808
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795232886522
+      }
+    ],
+    "37. Set up testing framework": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227409940
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795233027169
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795237238100
+      }
+    ],
+    "38. Write unit tests for Configuration": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227410199
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795233028727
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795237240352
+      }
+    ],
+    "39. Write unit tests for Game State Manager": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227410761
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795237249828
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795239837746
+      }
+    ],
+    "40. Write unit tests for Input Handler": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227410943
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795237251768
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795239839274
+      }
+    ],
+    "41. Write unit tests for Score Manager": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227411185
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795237253622
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795239841319
+      }
+    ],
+    "42. Write unit tests for Rendering": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227411780
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795237254689
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795239841936
+      }
+    ],
+    "43. Write integration tests for Game Loop": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227412250
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795239852942
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795240521497
+      }
+    ],
+    "44. Write integration tests for Full Gameplay": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227412808
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795240530933
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795240674642
+      }
+    ],
+    "45. Run all tests and fix failures": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227413360
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795240687388
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795242895578
+      }
+    ],
+    "46. Checkpoint - Foundation Complete": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227413880
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795242917465
+      }
+    ],
+    "47. Checkpoint - Core Engine Complete": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227414420
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795242918462
+      }
+    ],
+    "48. Checkpoint - Physics & Collision Complete": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227415243
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795242920350
+      }
+    ],
+    "49. Checkpoint - Game Objects Complete": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227415772
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795242921295
+      }
+    ],
+    "50. Checkpoint - Rendering Complete": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227416255
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795242922631
+      }
+    ],
+    "51. Checkpoint - Audio & Polish Complete": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227416714
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795242924674
+      }
+    ],
+    "52. Checkpoint - Testing Complete": [
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795227417115
+      },
+      {
+        "executionId": "274debf9-5b36-4be0-835f-de4b1a5fb5b9",
+        "chatSessionId": "sess_fbaf66d9-f2ca-45d4-a690-980092b69c8b",
+        "timestamp": 1795242925760
+      }
+    ]
+  }
+}

@@ -350,3 +350,57 @@ Flappy Kiro is a retro browser-based endless scroller game where the player guid
 - All assets (images and audio) must be less than 1MB total
 - The game must function without external dependencies beyond the browser
 - No backend server is available for high score persistence (local storage only)
+### Requirement 14: Cape and Laser Weapon System
+
+**User Story:** As a player, I want Kiro to have a red cape and a laser weapon so that I can customize the character's appearance and gain a new gameplay ability to destroy pipe sections.
+
+#### Acceptance Criteria
+
+**Cape Rendering:**
+1. THE Renderer SHALL draw a red cape attached to Kiro's back when Kiro is rendered.
+2. THE Cape SHALL use primary color #DC143C (Crimson) and secondary color #8B0000 (Dark Red) for shading.
+3. THE Cape dimensions SHALL be 14 pixels wide with variable height between 20-28 pixels based on animation state.
+4. WHERE Kiro is moving upward (negative Velocity_Y), THE Cape Renderer SHALL animate the cape flowing upward with maximum flow offset of 8 pixels.
+5. WHERE Kiro is falling (positive Velocity_Y), THE Cape Renderer SHALL animate the cape dragging downward.
+6. THE Cape anchor point SHALL be offset -5 pixels from Kiro's center to position it behind the character.
+7. WHERE Kiro's rotation exceeds 30 degrees upward, THE Cape Renderer SHALL increase cape flow speed proportionally.
+
+**Laser Weapon:**
+8. WHERE the player presses 'L' key or right-clicks during Playing state, THE Laser_System SHALL fire a laser beam.
+9. THE Laser beam SHALL travel horizontally to the right from Kiro's current position at 15 pixels per frame.
+10. THE Laser beam SHALL have a total length of 150 pixels when fully extended.
+11. THE Laser beam visual SHALL consist of a green core (#00FF00) with white center and a semi-transparent green glow.
+12. THE Laser_System SHALL create a 40-pixel diameter (20-pixel radius) circular hole in any pipe section it intersects.
+13. WHERE the laser intersects a pipe section, THE Pipe_Damage_Manager SHALL register a hit and track damage per pipe section.
+14. EACH pipe section SHALL be destroyable after receiving 3 laser hits.
+15. WHERE a pipe section receives its 3rd hit, THE Renderer SHALL render that section as partially/fully destroyed (render pipe with holes).
+16. THE Laser_System SHALL NOT fire if cooldown is active.
+17. WHERE a laser shot misses all pipes (travels off-screen), THE Laser_System SHALL reset without triggering destruction.
+
+**Cooldown System:**
+18. THE Laser_Cooldown SHALL be 20 seconds (1200 frames at 60 FPS).
+19. WHERE a laser is fired, THE Laser_System SHALL enter cooldown state and prevent further firing.
+20. THE Renderer SHALL display the cooldown timer in the bottom-left corner of the canvas during cooldown.
+21. THE Cooldown timer SHALL show remaining time in seconds with one decimal place (e.g., "LASER: 15.3s").
+22. WHERE cooldown reaches 0, THE Audio_Engine SHALL play a "laser ready" sound effect.
+23. WHERE cooldown is active, THE Renderer SHALL display the timer with color #FF6B6B.
+24. WHERE cooldown is ready, THE Renderer SHALL display "LASER: READY" in color #4ECDC4.
+25. THE Cooldown timer SHALL be visible in all game states except Title screen.
+
+**Audio Effects:**
+26. WHERE a laser is fired, THE Audio_Engine SHALL play laser_fire.wav at 100% volume.
+27. WHERE a laser hits a pipe, THE Audio_Engine SHALL play laser_hit.wav at 80% volume.
+28. WHERE cooldown completes and laser is ready, THE Audio_Engine SHALL play laser_ready.wav at 60% volume.
+
+**Input Mapping:**
+29. THE Input_Handler SHALL bind 'L' key to laser fire action.
+30. THE Input_Handler SHALL bind right mouse click to laser fire action.
+31. THE Input_Handler SHALL ignore laser input during Title, Paused, and Game Over states.
+32. THE Input_Handler SHALL allow laser firing during Playing state only.
+
+**Integration:**
+33. THE Game object SHALL include a reference to Laser_System for update/render calls in the game loop.
+34. THE Laser_System SHALL be reset when the game resets.
+35. THE Laser_System SHALL update cooldown timer each frame during cooldown.
+36. THE Laser beam SHALL be rendered after pipes but before Kiro (beam passes through pipes).
+37. Pipe sections with holes SHALL still cause collision damage to Kiro (holes are visual destruction only).
