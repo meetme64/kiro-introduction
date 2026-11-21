@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Game state consistency check",
+      "trigger": "PostFileSave",
+      "description": "Validates game state consistency when the Ghosty (player, implemented as Kiro), Wall (pipe/obstacle), or GameEngine (game loop/state manager) classes are modified.",
+      "matcher": "(Kiro|Pipe|Wall|Game(Loop|StateManager|Engine))[A-Za-z]*\\.js$",
+      "action": {
+        "type": "agent",
+        "prompt": "A file implementing the Ghosty (player character, class Kiro in src/entities/Kiro.js), Wall (pipe/obstacle, PipeManager.js), or GameEngine (GameLoop.js / GameStateManager.js) was just saved. Before anything else runs on this file, validate game state consistency:\n\n1. Inspect the diff (`git diff` for the file, staged or not) to see what changed.\n2. Depending on which class was touched, check these invariants against the actual code (not just the diff):\n   - Ghosty/Kiro: velocity is clamped to a terminal velocity, position/rotation stay within their documented bounds, animation/state field only takes known values (e.g. idle/flap/death), gravity and jump use delta time (frame-rate independent), not fixed per-frame increments.\n   - Wall/Pipe: gap position stays within canvas bounds with the configured clearance, gap size and speed come from the difficulty tier and are never negative or zero, object-pool acquire/release calls stay balanced (no pipe double-released or leaked), spawn interval/frame counter logic is consistent.\n   - GameEngine/GameLoop/GameStateManager: state transitions still match the TITLE/PLAYING/PAUSED/GAMEOVER matrix in the steering doc, every state's enter() has a matching exit() path, delta time is computed from performance.now() and passed through consistently, eventBus emits (stateChange, scoreChange, difficultyChange, etc.) stay paired with their documented data shape.\n3. Run the relevant automated tests for the touched area (e.g. `npm run test:unit`, and `node node_modules/jest/bin/jest.js test/integration/game-loop.test.js` when GameLoop/GameStateManager changed) and capture pass/fail.\n4. Report findings to the user as a short note: state clearly if everything checks out, or list each broken invariant / failing test with the file and line. Do not modify code or revert anything yourself — just flag issues. This check is independent of the auto-commit hooks; it does not block or skip the commit."
+      }
+    }
+  ]
+}
