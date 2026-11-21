@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Docs commit on save",
+      "trigger": "PostFileSave",
+      "description": "Commits README.md and docs/*.md saves with a standardized docs commit message summarizing the change.",
+      "matcher": "(^|/)README\\.md$|(^|/)docs/.*\\.md$",
+      "action": {
+        "type": "agent",
+        "prompt": "A markdown doc file (README.md or a .md file under docs/) was just saved. Stage only that file (git add <path>) and commit it locally with the message:\n\ndocs: update <filename>\n\n<one- to three-line summary of what changed, derived from `git diff --cached` for this file>\n\nUse the file's base name (e.g. README.md, setup.md) in place of <filename>. Do this without asking for confirmation. Do NOT run `git push` or contact any remote. If the file is untracked by git or there are no actual changes staged, skip silently without reporting an error."
+      }
+    }
+  ]
+}
