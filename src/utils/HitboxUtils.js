@@ -136,7 +136,11 @@ export function getUpperPipeHitbox(pipe) {
         type: 'rectangle',
         x: pipe.x,
         y: 0,
-        width: pipe.pipeWidth,
+        // Real pipe objects (see PipeManager) store this as `.width`, not
+        // `.pipeWidth`. Reading the wrong property made this always
+        // undefined, which poisoned the collision math to NaN and made
+        // upper-pipe collisions impossible to ever detect.
+        width: pipe.width,
         height: pipe.gapPosition
     };
 }
@@ -165,7 +169,8 @@ export function getLowerPipeHitbox(pipe, canvasHeight) {
         type: 'rectangle',
         x: pipe.x,
         y: gapBottom,
-        width: pipe.pipeWidth,
+        // See getUpperPipeHitbox above - real pipe objects use `.width`.
+        width: pipe.width,
         height: canvasHeight - gapBottom
     };
 }
